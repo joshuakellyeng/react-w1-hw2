@@ -17,6 +17,17 @@ class App extends React.Component {
 
 	handleSumbit = e => {
 		e.preventDefault();
+		const newProd = {
+			item: this.state.item,
+			units: this.state.units,
+			quantity: this.state.quantity
+		}
+		this.setState({
+			supplies: [newProd, ...this.state.supplies],
+			item: '',
+			units: '',
+			quantity: ''
+		})
 	
 	}
 
@@ -27,8 +38,7 @@ class App extends React.Component {
 				<div id="new-item">
 					<form class="ui form">
 						<label htmlFor="item">Item:</label>
-						<input
-							id="item"
+						<input id="item"
 							type="text"
 							value={this.state.item}
 							onChange={this.handleChange}
@@ -37,7 +47,7 @@ class App extends React.Component {
 						<input id="units" type="text" value={this.state.units} onChange={this.handleChange}  />
 						<label htmlFor="quantity">Quantity:</label>
 						<input id="quantity" type="text" value={this.state.quantity} onChange={this.handleChange} />
-						<button>
+						<button onClick={this.handleSumbit}>
 							<i class="shop icon"></i>
 						</button>
 					</form>
